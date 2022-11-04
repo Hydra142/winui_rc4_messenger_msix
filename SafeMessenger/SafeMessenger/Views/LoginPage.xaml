@@ -1,0 +1,75 @@
+﻿<Page
+    x:Class="SafeMessenge.Views.LoginPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SafeMessenge.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:models="using:SafeMessenge.Models"
+    mc:Ignorable="d"
+    >
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="FontFamily" Value="Roboto"/>
+        </Style>
+        <DataTemplate x:DataType="models:User" x:Key="UserListItemTemplate">
+            <Grid RowSpacing="10" Padding="20" BorderThickness="2" BorderBrush="Silver" CornerRadius="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <RichTextBlock  Grid.Row="0" HorizontalAlignment="Center" TextAlignment="Center">
+                    <Paragraph>
+                        <Run Text="{x:Bind Name}"/>
+                    </Paragraph>
+                </RichTextBlock>
+                <!--<TextBlock  Grid.Row="1" Text="{x:Bind Name}" HorizontalAlignment="Center"/>-->
+                <Ellipse Grid.Row="1" Height="100" Width="100">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="{Binding Avatar}"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+    <Grid RowSpacing="20" Padding="40">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="Вхід в систему" HorizontalTextAlignment="Center" FontSize="22" FontWeight="Bold"/>
+        <TextBlock Grid.Row="1" Text="Виберіть користувача" HorizontalTextAlignment="Center"/>
+        <GridView
+            x:Name="UsersGridView"
+            Grid.Row="2"
+            ScrollViewer.VerticalScrollMode="Enabled"
+            ScrollViewer.IsVerticalRailEnabled="True"
+            ScrollViewer.VerticalScrollBarVisibility="Visible"
+            IsSwipeEnabled="True"
+            HorizontalAlignment="Center"
+            ItemsSource="{x:Bind ViewModel.Users, Mode=OneWay}"
+            SelectedItem="{x:Bind ViewModel.CyrrentUser, Mode=TwoWay}"
+            ItemTemplate="{StaticResource UserListItemTemplate}">
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid Orientation="Horizontal" MaximumRowsOrColumns="3"/>
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
+        </GridView>
+        <Grid Grid.Row="3" HorizontalAlignment="Center" RowSpacing="15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock Text="Корстувач:" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                <TextBlock Text="{x:Bind ViewModel.CyrrentUser.Name, Mode=OneWay}"/>
+            </StackPanel>
+        </Grid>
+        <Button Grid.Row="4" Content="Увійти" Click="Login" HorizontalAlignment="Center" Background="red" IsEnabled="{x:Bind ViewModel.IsUserSelected, Mode=OneWay}"/>
+    </Grid>
+</Page>
