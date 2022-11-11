@@ -240,7 +240,7 @@ namespace SafeMessenge.ViewModels
             {
                 chat.Init(Users, CurrentUser.Id);
                 var newMessagesCount = chat.ChatMessages.Count;
-                chat.NewMessagesCount = newMessagesCount;
+                chat._NewMessagesCount = newMessagesCount;
                 chat.IsNewMessages = true;
                 if (chat.PartnerId != CreatingChatUserId)
                 {
@@ -265,7 +265,7 @@ namespace SafeMessenge.ViewModels
                         } else
                         {
                             var newMessagesCount = apiChatData.ChatMessages.Count + chat.NewMessagesCount - chat.ChatMessages.Count;
-                            apiChatData.newMessagesCount = newMessagesCount;
+                            apiChatData._NewMessagesCount = newMessagesCount;
                             apiChatData.IsNewMessages = true;
                             UserChats[chatIndex] = apiChatData;
                         }

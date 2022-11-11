@@ -24,7 +24,7 @@ public partial class Chat : ObservableRecipient, IResponseModel
     [ObservableProperty]
     public string _EncriptingTextKey = "";
     [ObservableProperty]
-    public int newMessagesCount = 0;  
+    public int _NewMessagesCount = 0;  
     [ObservableProperty]
     public bool _IsNewMessages = false;
     public void DecryptMessages()
@@ -73,7 +73,7 @@ public partial class Message: IResponseModel
     [JsonProperty("encrypted_message")]
     public string EncryptedMessage;
     [ObservableProperty]
-    public string decryptedMessage ="";
+    public string _DecryptedMessage ="";
     [JsonProperty("message_type")]
     public string MessageType;
     [JsonProperty("user_sent_id")]
