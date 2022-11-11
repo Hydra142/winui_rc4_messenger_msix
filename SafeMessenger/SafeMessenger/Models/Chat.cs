@@ -27,7 +27,7 @@ public partial class Chat : ObservableRecipient, IResponseModel
     public int newMessagesCount = 0;  
     [ObservableProperty]
     public bool _IsNewMessages = false;
-    public void DecodeMessages()
+    public void DecryptMessages()
     {
         ChatMessages = ChatMessages ?? new(new List<Message>());
         foreach (var message in ChatMessages)
@@ -52,10 +52,11 @@ public partial class Chat : ObservableRecipient, IResponseModel
         ChatMessages = ChatMessages ?? new(new List<Message>());
         foreach (var message in ChatMessages)
         {
-            message.UserSent = currentUsers.Find(u => u.Id == message.UserSentId) ?? new() { Name = "undefined user"};
+            message.UserSent = currentUsers
+                .Find(u => u.Id == message.UserSentId) ?? new() { Name = "undefined user"};
             message.Alignment = message.UserSent.Id == myUserId ? "Right" : "Left";
         }
-        DecodeMessages();
+        DecryptMessages();
         return this;
     }
 }

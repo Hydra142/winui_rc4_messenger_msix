@@ -100,7 +100,7 @@ namespace SafeMessenge.Views
         {
             if(ViewModel.CurrentChatData != null)
             {
-                ViewModel.CurrentChatData.DecodeMessages();
+                ViewModel.CurrentChatData.DecryptMessages();
             }
             
         }

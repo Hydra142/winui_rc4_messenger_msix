@@ -16,7 +16,6 @@ namespace SafeMessenge.Helpers
         }
 
         // Key-Scheduling Algorithm 
-        // Алгоритм ключевого расписания 
         private void init(byte[] key)
         {
             int keyLength = key.Length;
@@ -53,7 +52,6 @@ namespace SafeMessenge.Helpers
         }
 
         // Pseudo-Random Generation Algorithm 
-        // Генератор псевдослучайной последовательности 
         private byte keyItem()
         {
             x = (x + 1) % 128;
