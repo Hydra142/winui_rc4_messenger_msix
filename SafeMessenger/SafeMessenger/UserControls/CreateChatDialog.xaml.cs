@@ -30,6 +30,7 @@ public sealed partial class CreateChatDialog : UserControl
         var isListEmpty = AvailableUsers.Count <= 0;
 
         SelectedUser = AvailableUsers.FirstOrDefault();
+        CancelButton.Visibility = isListEmpty ? Visibility.Collapsed : Visibility.Visible;
         SelectUserText.Visibility = isListEmpty ? Visibility.Collapsed : Visibility.Visible;
         UsersGridView.Visibility = isListEmpty ? Visibility.Collapsed : Visibility.Visible;
         CreateChatButton.Visibility = isListEmpty ? Visibility.Collapsed : Visibility.Visible;
